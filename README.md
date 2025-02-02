@@ -1,7 +1,7 @@
 # spark-ejercicios
 Paquete de Python con ejercicios de ETL para practicar 
 
-## Primera semana: lectura de datos crudos, preprocesamiento y guardado a fichero
+## Primera semana: lectura de datos crudos y preprocesamiento
 
 En esta primera semana, escribiremos el código para preprocesar los datos en crudo y obtener datos más utiles y de 
 mejor calidad, aunque los guardaremos provisionalmente en otro fichero. El procesamiento será mejorado en la segunda 
@@ -17,7 +17,7 @@ de vuelos, para adecuarse al nombre de tu contenedor de ADLS.
   incluye la fecha (columna FlightDate) y la hora (hora local en el aeropuerto de salida). Hay varias maneras de
   conseguir esto, aunque es importante evitar usar una UDF. Utilizando `lpad` para convertir en un string de 4 elementos
   la columna `DepTime`, y concatenando la columna `FlightDate` (string) con el resultado de `lpad` tenemos un string
-  con la fecha y hora completa, que podemos convertir en timestamp con la función `to_timestamp` con formato `F.lit("yyyy-MM-dd HHmm"))`.
+  con la fecha y hora completa, la cual podemos convertir a timestamp con la función `to_timestamp` con formato `"yyyy-MM-dd HHmm"`.
     * Asumiremos que el timestamp resultante no tiene zona horaria para no complicar el ejercicio, ya que en otro caso, 
     habría que buscar la zona horaria de cada aeropuerto de salida.
     * Crear un test unitario del método `preprocesa`. Para ello, tendrás que crear un nuevo entorno virtual `venv-tests` que no
@@ -40,6 +40,9 @@ de vuelos, para adecuarse al nombre de tu contenedor de ADLS.
   procesar los datos completos.
   
 * Leer el fichero de vuelos, que debe estar situado en la ruta de ADLS indicada en el json, y solo para la fecha indicada en el JSON.
+* Asegurar que se le aplica el esquema propuesto en el JSON de configuración, en la propiedad `input_file_schema`. 
+  * En una aplicación productiva, no se debe dejar que el tipo de cada columna sea inferido, sino que debemos asegurarnos de que lo 
+  conocemos y lo aplicamos correctamente. 
 
 #### Instrucciones para crear databases en Databricks
 
