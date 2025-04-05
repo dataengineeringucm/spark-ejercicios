@@ -1,5 +1,6 @@
 
 databricks-connect==15.4.4
+# pyspark==3.5.0
 grpcio==1.59.3        # necesarias por incompatibilidad de databricks-connect con la versión más reciente de grpcio
 grpcio-status==1.59.3
 pytest==8.3.4
