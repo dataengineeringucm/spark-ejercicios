@@ -1,5 +1,4 @@
-from databricks.connect import DatabricksSession
-from pyspark.sql import SparkSession
+from etl.featurizer import Featurizer
 
 
 class FlujoDiario:
@@ -33,5 +32,9 @@ class FlujoDiario:
             .csv(self.properties["raw_input_file"])
         )
 
-        flights_df.printSchema()
-        print(flights_df.limit(10).toPandas())
+        featurizer = Featurizer(self.spark, self.properties)
+        preprocesado_df = featurizer.preprocesa(flights_df)
+        preprocesado_df.show()
+
+
+
